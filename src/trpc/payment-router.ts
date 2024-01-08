@@ -74,6 +74,7 @@ export const paymentRouter = router({
       }
     }),
     getOrderStatus : privateProcedure.input(z.object({orderID : z.string()})).query(async ({input}) => {
+      console.log("success")
       const {orderID} = input
       const payload = await getPayloadClient()
 

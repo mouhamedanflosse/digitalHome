@@ -25,9 +25,9 @@ export default function NavMobile() {
       </SheetTrigger>
       <SheetContent  side="left">
         <div className="flex flex-col gap-9">
-          {PRODUCT_CATEGORIES.map((cat) => {
+          {PRODUCT_CATEGORIES.map((cat,i) => {
             return (
-              <div>
+              <div key={i}>
                 <h2 className="font-semibold mb-3">{cat.label}</h2>
                 <div key={cat.value} className="grid grid-cols-2 gap-3">
                   {cat.featured.map((item,i) => {

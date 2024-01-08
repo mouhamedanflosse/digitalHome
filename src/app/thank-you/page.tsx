@@ -48,7 +48,6 @@ export default async function ThankUpage({ searchParams }: ThankUpageProps) {
     0
   );
   const fee = 1;
-
   return (
     <div className="min-h-full ">
       <div className="hidden lg:absolute overflow-hidden lg:block lg:pr-4 h-80 lg:w-1/2 lg:h-full">
@@ -120,13 +119,15 @@ export default async function ThankUpage({ searchParams }: ThankUpageProps) {
                         <p className="text-xs text-gray-300">
                           category : {label}
                         </p>
-                        <a
-                          href={downloadUrl}
-                          className="mt-6 text-[13px] text-blue-300 hover:text-blue-200 hover:underline duration-300"
-                          download={prd.name}
-                        >
-                          Download asset
-                        </a>
+                        {order._isPaid ?
+                          <a
+                            href={downloadUrl}
+                            className="mt-6 text-[13px] text-blue-300 hover:text-blue-200 hover:underline duration-300"
+                            download={prd.name}
+                          >
+                            Download asset
+                          </a> : null
+                        }
                       </div>
                       <p className="text-sm font-bold pl-8">
                         {formatPrice(prd.price)}
@@ -154,7 +155,11 @@ export default async function ThankUpage({ searchParams }: ThankUpageProps) {
                 </span>
               </li>
             </ul>
-            <PaymentStatus orderID={order.id}  isPaid={order._isPaid} orderEmail={(order.user as User).email} />
+            <PaymentStatus
+              orderID={order.id}
+              isPaid={order._isPaid}
+              orderEmail={(order.user as User).email}
+            />
             <div className="mt-6 text-right gap-x-3 text-xs  text-blue-400">
               <Link
                 href="/products"

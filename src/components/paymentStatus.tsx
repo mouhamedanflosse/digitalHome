@@ -9,13 +9,13 @@ interface paymentProps {
   orderEmail: string;
 }
 
-export default async function PaymentStatus({
+export default function PaymentStatus({
   orderID,
   isPaid,
   orderEmail,
 }: paymentProps) {
-    const router = useRouter()
-  const { data } = await trpc.payment.getOrderStatus.useQuery(
+  const router = useRouter()
+  const { data } =  trpc.payment.getOrderStatus.useQuery(
     { orderID },
     {
       enabled: isPaid === false,
@@ -25,7 +25,7 @@ export default async function PaymentStatus({
 
   useEffect(() => {
     if (data?.isPaid) router.refresh()
-  }, [data?.isPaid.valueOf,router])
+  }, [data?.isPaid,router])
 
   return (
     <div className="grid grid-cols-2  justify-between gap-x-8 mt-4">
