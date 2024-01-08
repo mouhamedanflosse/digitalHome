@@ -12,6 +12,7 @@ interface productProps {
   herf?: string;
   query: TQueryValidator;
 }
+
 export default function Product(props: productProps) {
   const { title, subTitle, herf, query } = props;
 
@@ -35,7 +36,6 @@ export default function Product(props: productProps) {
   } else if (isLoading) {
     prods = new Array<null>(query.limit ?? FALLBACK_LIMIT).fill(null)
   }
-  console.log(QueryResult,products)
   return (
     <section className="py-12">
       <div className="md:flex md:items-center md:justify-between mb-4">

@@ -29,9 +29,7 @@ export default function ReceiptEmail({date,
     email,
     orderId,
     products,} : ReceiptEmailProps) {
-
         const total = products.reduce((total, {price}) => total + price  , 0)
-
   return (
     <Html>
     <Head />

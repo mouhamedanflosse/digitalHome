@@ -3,6 +3,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Toaster } from "sonner"
 import Providers from "@/components/Providers";
+import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "Home",
@@ -21,6 +22,7 @@ export default function RootLayout({
           <Providers >
           <Navbar/>
           <div className="flex-grow flex-1">{children}</div>
+          <Footer />
           </Providers>
           <Toaster position="top-center" richColors />
         </main>

@@ -9,6 +9,8 @@ import { IncomingMessage } from "http"
 import { stripeWebHookHandlar } from "./webhook"
 import nextBuild from "next/dist/build"
 import path from "path"
+import { PayloadRequest } from "payload/types"
+import { parse } from "url"
 
 const app = express()
 const PORT = Number(process.env.PORT) || 3000
@@ -52,14 +54,24 @@ const start = async () => {
           payload.logger.info(
             'Next.js is building for production'
           )
-    
           // @ts-expect-error
           await nextBuild(path.join(__dirname, '../'))
-    
           process.exit()
         })
         return
       }
+
+      const cartRouter = express.Router()
+      cartRouter.use(payload.authenticate)
+
+      cartRouter.get("/", (req,res) => {
+        if (!(req as PayloadRequest).user) return res.redirect("/sign-in?origin=cart")
+        const parsedUrl = parse(req.url,true)
+
+        return nextApp.render(req,res,"/cart",parsedUrl.query)
+      })
+
+      app.use("/cart",cartRouter)
 
     nextApp.prepare().then(() => {
         payload.logger.info("Next js started")

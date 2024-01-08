@@ -1,11 +1,9 @@
-import { type } from "os";
 import { Button } from "./ui/button";
 import { PRODUCT_CATEGORIES } from "@/config";
 import { ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
-import Link from "next/link";
-import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 type category = (typeof PRODUCT_CATEGORIES)[number];
 
@@ -22,6 +20,11 @@ export default function NavItem({
   isOpen,
   isAnyOpen,
 }: navItemProps) {
+  const router = useRouter()
+
+  const goToCategory = (herf : string) => {
+    router.push(herf)
+  }
   return (
     <div className="flex">
       <div className="relative flex items-center">
@@ -52,19 +55,20 @@ export default function NavItem({
                     {category.featured.map((item) => (
                       <div
                         key={item.name}
-                        className="group relative text-base sm:text-sm "
+                        onClick={() => goToCategory(item.href)}
+                        className="group relative text-base cursor-pointer sm:text-sm"
                       >
-                        <div className="relative aspect-video overflow-hidden rounded-lg bg-gray-100 group-hover:opacity-75">
+                        <div className="relative flex justify-center items-center aspect-video overflow-hidden rounded-lg">
                           <Image
                           src={item.imageSrc}
                           alt = "product category image" 
                           fill
-                          className="object-cover object-center"
+                          className="object-cover bg-gray-100 group-hover:opacity-75 absolute object-center"
                           priority={true}
                           /> 
+                         <p className="text-white inset-0 text-2xl z-10 opacity-0 transition group-hover:opacity-100 text-center">{item.name}</p>
                         </div>
-                        <Link href={item.href} className="text-white font-bold ">{item.name}</Link>
-                        {/* <p className="mt-1 text-white" aria-hidden="true">shop now</p> */}
+                        <p className="text-white font-bold ">{item.name}</p>
                       </div>
                     ))}
                   </div>
