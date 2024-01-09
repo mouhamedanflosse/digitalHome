@@ -43,7 +43,7 @@ export default function Pags() {
       </h1>
       <div className="mt-12 lg:grid items-start mx-auto lg:grid-cols-12 lg:gap-12 xl:gap-16">
         <ScrollArea
-          className={cn("lg:col-span-7 p-1 h-[350px] bg-[#06010d] mb-4", {
+          className={cn("lg:col-span-7 p-1 max-h-[350px] h-48 bg-[#06010d] mb-4", {
             "border-dashed border-2 bg-[#06010d] p-2 rounded-lg ":
               isMounted && items.length === 0,
           })}

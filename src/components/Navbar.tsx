@@ -29,7 +29,7 @@ export default async function Navbar() {
                 <NavItems />
               </div>
               <div className="flex ml-auto items-center">
-                <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6 ">
+                <div className="flex flex-1 items-center justify-end lg:space-x-6 mr-4 lg:mr-0">
                   {user ? null : (
                     <Link
                       href="/sign-in"
@@ -39,13 +39,15 @@ export default async function Navbar() {
                     </Link>
                   )}
                   {user ? null : <span aria-hidden="true" className="h-6 bg-gray-300 w-px" />}
-                  {user ? <UserAccount user={user} />  : (
+                  {user ? <UserAccount user={user} />  :  (
+                  <div className="hidden sm:block">
                     <Link
                       href="/sign-up"
                       className={buttonVariants({ variant: "ghost" })}
                     >
                       create account
                     </Link>
+                    </div>
                   )}
                   {user ? null : <span className="h-6 bg-gray-300 w-px" aria-hidden="true"/> }
                   <div className="ml-4 lg:ml-8 flow-root">

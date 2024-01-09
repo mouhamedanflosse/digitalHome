@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import {
   Sheet,
   SheetContent,
+  SheetFooter,
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { PRODUCT_CATEGORIES } from "@/config";
@@ -24,6 +25,8 @@ export default function NavMobile() {
         </Button>
       </SheetTrigger>
       <SheetContent  side="left">
+        <SheetFooter>
+          <SheetTrigger asChild>
         <div className="flex flex-col gap-9">
           {PRODUCT_CATEGORIES.map((cat,i) => {
             return (
@@ -53,6 +56,8 @@ export default function NavMobile() {
             );
           })}
         </div>
+        </SheetTrigger>
+        </SheetFooter>
       </SheetContent>
     </Sheet>
   );
