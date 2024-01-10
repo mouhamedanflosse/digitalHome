@@ -64,12 +64,18 @@ export const product_files: CollectionConfig = {
   upload: {
     staticURL: "/product_files",
     staticDir: "Product_files",
-    mimeTypes: ["image/*", "font/*", "application/*", "application/x-rar-compressed", "application/zip"],
+    mimeTypes: [
+      "image/*",
+      "font/*",
+      "application/*",
+      "application/vnd.rar",
+      "application/zip",
+    ],
   },
   access: {
     read: ownedOrdpurchasedProduct,
-    update : ({req}) => req.user.role === "admin",
-    delete : ({req}) => req.user.role === "admin",
+    update: ({ req }) => req.user.role === "admin",
+    delete: ({ req }) => req.user.role === "admin",
   },
   fields: [
     {
