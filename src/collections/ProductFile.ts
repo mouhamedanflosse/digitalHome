@@ -64,7 +64,7 @@ export const product_files: CollectionConfig = {
   upload: {
     staticURL: "/product_files",
     staticDir: "Product_files",
-    mimeTypes: ["image/*", "font/*", "application/*"],
+    mimeTypes: ["image/*", "font/*", "application/*", "application/x-rar-compressed", "application/zip"],
   },
   access: {
     read: ownedOrdpurchasedProduct,
