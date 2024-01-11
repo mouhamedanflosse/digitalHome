@@ -91,7 +91,7 @@ exports.paymentRouter = (0, trpc_1.router)({
                         });
                         filteredProduct.forEach(function (prd) {
                             line_items.push({
-                                price: prd.priceID,
+                                price: prd.stripeID,
                                 quantity: 1,
                             });
                         });

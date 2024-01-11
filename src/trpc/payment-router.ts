@@ -5,6 +5,7 @@ import { getPayloadClient } from "../get-payload";
 import { stripe } from "../lib/strip";
 import type Stripe from "stripe";
 
+// commment
 export const paymentRouter = router({
   createSession:  privateProcedure
     .input(z.object({ productIDs: z.array(z.string()) }))
@@ -27,7 +28,7 @@ export const paymentRouter = router({
         },
       });
 
-      const filteredProduct = products.filter((pr) => Boolean(pr.priceID));
+      const filteredProduct = products.filter((pr) => Boolean(pr.stripeID));
 
       const order = await payload.create({
         collection: "order",
@@ -70,13 +71,13 @@ export const paymentRouter = router({
          return { url: stripeSession.url }
       } catch (err) {
         console.log(err)
+        console.log(err)
         return { url: null }
       }
     }),
     getOrderStatus : privateProcedure.input(z.object({orderID : z.string()})).query(async ({input}) => {
       const {orderID} = input
       const payload = await getPayloadClient()
-
       const {docs : orders} = await payload.find({
         collection : "order",
         where : {

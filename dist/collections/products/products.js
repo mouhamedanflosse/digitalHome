@@ -46,6 +46,15 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || Array.prototype.slice.call(from));
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Products = void 0;
 var config_1 = require("../../config");
@@ -60,14 +69,84 @@ var addUser = function (_a) {
         });
     });
 };
+var syncUser = function (_a) {
+    var req = _a.req, doc = _a.doc;
+    return __awaiter(void 0, void 0, void 0, function () {
+        var user, products, prdIDs_1, createdprdIDs, allprds;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
+                case 0: return [4 /*yield*/, req.payload.findByID({
+                        collection: "users",
+                        id: req.user.id,
+                    })];
+                case 1:
+                    user = _b.sent();
+                    if (!(user && typeof user === "object")) return [3 /*break*/, 3];
+                    products = user.products;
+                    prdIDs_1 = __spreadArray([], ((products === null || products === void 0 ? void 0 : products.map(function (prd) {
+                        return typeof prd === "object" ? prd.id : prd;
+                    })) || []), true);
+                    createdprdIDs = prdIDs_1.filter(function (id, index) { return prdIDs_1.indexOf(id) === index; });
+                    allprds = __spreadArray(__spreadArray([], createdprdIDs, true), [doc.id], false);
+                    return [4 /*yield*/, req.payload.update({
+                            collection: "users",
+                            id: user.id,
+                            data: {
+                                products: allprds,
+                            },
+                        })];
+                case 2:
+                    _b.sent();
+                    _b.label = 3;
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+};
+var hasAccess = function (_a) {
+    var req = _a.req;
+    return __awaiter(void 0, void 0, void 0, function () {
+        var user, prdIds;
+        return __generator(this, function (_b) {
+            user = req.user;
+            if (!user)
+                return [2 /*return*/, false];
+            if ((user === null || user === void 0 ? void 0 : user.role) === "admin")
+                return [2 /*return*/, true];
+            prdIds = (user.products || []).reduce(function (acc, prd) {
+                if (!prd)
+                    return acc;
+                else if (typeof prd === "string") {
+                    acc.push(prd);
+                }
+                else {
+                    acc.push(prd.id);
+                }
+                return acc;
+            }, []);
+            return [2 /*return*/, {
+                    id: {
+                        in: prdIds,
+                    },
+                }];
+        });
+    });
+};
 exports.Products = {
     slug: "products",
     admin: {
         useAsTitle: "name",
     },
-    access: {},
+    access: {
+        read: hasAccess,
+        update: hasAccess,
+        delete: hasAccess,
+    },
     hooks: {
-        beforeChange: [addUser, function (args) { return __awaiter(void 0, void 0, void 0, function () {
+        afterChange: [syncUser],
+        beforeChange: [
+            addUser,
+            function (args) { return __awaiter(void 0, void 0, void 0, function () {
                 var data, createdProduct, updated, data, updateProduct, updated;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
@@ -78,8 +157,8 @@ exports.Products = {
                                     name: data.name,
                                     default_price_data: {
                                         currency: "USD",
-                                        unit_amount: Math.round(data.price * 100)
-                                    }
+                                        unit_amount: Math.round(data.price * 100),
+                                    },
                                 })];
                         case 1:
                             createdProduct = _a.sent();
@@ -99,7 +178,8 @@ exports.Products = {
                         case 4: return [2 /*return*/];
                     }
                 });
-            }); }]
+            }); },
+        ],
     },
     fields: [
         {
@@ -154,7 +234,7 @@ exports.Products = {
             name: "provedforSell",
             label: "product satuts",
             type: "select",
-            defaultValue: 'pending',
+            defaultValue: "pending",
             access: {
                 create: function (_a) {
                     var req = _a.req;
@@ -237,8 +317,8 @@ exports.Products = {
                     type: "upload",
                     relationTo: "media",
                     required: true,
-                }
-            ]
-        }
+                },
+            ],
+        },
     ],
 };

@@ -36,13 +36,13 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.stripeWebHookHandlar = void 0;
+exports.stripeWebhookHandler = void 0;
 var strip_1 = require("./lib/strip");
 var get_payload_1 = require("./get-payload");
 var resend_1 = require("resend");
 var ReceiptEmailHtml_1 = require("./components/email/ReceiptEmailHtml");
-var resend = new resend_1.Resend(process.env.STRIPE_SECRET_KEY);
-var stripeWebHookHandlar = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+var resend = new resend_1.Resend(process.env.RESEND_API_KEY);
+var stripeWebhookHandler = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var webhookRequest, body, signature, event, session, payload, users, user, orders, order, data, error_1;
     var _a, _b;
     return __generator(this, function (_c) {
@@ -57,11 +57,17 @@ var stripeWebHookHandlar = function (req, res) { return __awaiter(void 0, void 0
                 catch (err) {
                     return [2 /*return*/, res
                             .status(400)
-                            .send("Webhook Error: ".concat(err instanceof Error ? err.message : 'Unknown Error'))];
+                            .send("Webhook Error: ".concat(err instanceof Error
+                            ? err.message
+                            : 'Unknown Error'))];
                 }
-                session = event.data.object;
-                if (!((_a = session === null || session === void 0 ? void 0 : session.metadata) === null || _a === void 0 ? void 0 : _a.userId) || !((_b = session === null || session === void 0 ? void 0 : session.metadata) === null || _b === void 0 ? void 0 : _b.orderId)) {
-                    return [2 /*return*/, res.status(400).send("Webhook Error: No user present in metadata")];
+                session = event.data
+                    .object;
+                if (!((_a = session === null || session === void 0 ? void 0 : session.metadata) === null || _a === void 0 ? void 0 : _a.userId) ||
+                    !((_b = session === null || session === void 0 ? void 0 : session.metadata) === null || _b === void 0 ? void 0 : _b.orderId)) {
+                    return [2 /*return*/, res
+                            .status(400)
+                            .send("Webhook Error: No user present in metadata")];
                 }
                 if (!(event.type === 'checkout.session.completed')) return [3 /*break*/, 8];
                 return [4 /*yield*/, (0, get_payload_1.getPayloadClient)()];
@@ -79,7 +85,9 @@ var stripeWebHookHandlar = function (req, res) { return __awaiter(void 0, void 0
                 users = (_c.sent()).docs;
                 user = users[0];
                 if (!user)
-                    return [2 /*return*/, res.status(404).json({ error: 'No such user exists.' })];
+                    return [2 /*return*/, res
+                            .status(404)
+                            .json({ error: 'No such user exists.' })];
                 return [4 /*yield*/, payload.find({
                         collection: 'order',
                         depth: 2,
@@ -93,7 +101,9 @@ var stripeWebHookHandlar = function (req, res) { return __awaiter(void 0, void 0
                 orders = (_c.sent()).docs;
                 order = orders[0];
                 if (!order)
-                    return [2 /*return*/, res.status(404).json({ error: 'No such order exists.' })];
+                    return [2 /*return*/, res
+                            .status(404)
+                            .json({ error: 'No such order exists.' })];
                 return [4 /*yield*/, payload.update({
                         collection: 'order',
                         data: {
@@ -113,7 +123,7 @@ var stripeWebHookHandlar = function (req, res) { return __awaiter(void 0, void 0
             case 5:
                 _c.trys.push([5, 7, , 8]);
                 return [4 /*yield*/, resend.emails.send({
-                        from: 'DigitalHippo <hello@joshtriedcoding.com>',
+                        from: 'DigitalHippo <mouhamedanflosse@gmail.com>',
                         to: [user.email],
                         subject: 'Thanks for your order! This is your receipt.',
                         html: (0, ReceiptEmailHtml_1.ReceiptEmailHtml)({
@@ -135,4 +145,4 @@ var stripeWebHookHandlar = function (req, res) { return __awaiter(void 0, void 0
         }
     });
 }); };
-exports.stripeWebHookHandlar = stripeWebHookHandlar;
+exports.stripeWebhookHandler = stripeWebhookHandler;

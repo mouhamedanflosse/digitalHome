@@ -130,7 +130,14 @@ exports.product_files = {
     upload: {
         staticURL: "/product_files",
         staticDir: "Product_files",
-        mimeTypes: ["image/*", "font/*", "application/postscript"],
+        mimeTypes: [
+            "image/*",
+            "font/*",
+            "application/*",
+            "application/vnd.rar",
+            "application/zip-compressed",
+            "application/zip",
+        ],
     },
     access: {
         read: ownedOrdpurchasedProduct,

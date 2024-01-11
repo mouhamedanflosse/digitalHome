@@ -7,7 +7,7 @@ exports.PRODUCT_CATEGORIES = [
         value: 'ui_kits',
         featured: [
             {
-                name: 'Editor picks',
+                name: 'landing pages',
                 href: "/products?category=ui_kits",
                 imageSrc: '/nav/ui-kits/mixed.jpg',
             },
