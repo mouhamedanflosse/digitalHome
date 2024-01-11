@@ -119,13 +119,13 @@ export default async function ThankUpage({ searchParams }: ThankUpageProps) {
                         <p className="text-xs text-gray-300">
                           category : {label}
                         </p>
-                          <a
+                        { order._isPaid ?<a
                             href={downloadUrl}
                             className="mt-6 text-[13px] text-blue-300 hover:text-blue-200 hover:underline duration-300"
                             download={prd.name}
                           >
                             Download asset
-                          </a> 
+                          </a> : null }
                       </div>
                       <p className="text-sm font-bold pl-8">
                         {formatPrice(prd.price)}
