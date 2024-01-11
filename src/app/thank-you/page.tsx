@@ -49,13 +49,13 @@ export default async function ThankUpage({ searchParams }: ThankUpageProps) {
   );
   const fee = 1;
   return (
-    <div className="min-h-full ">
+    <div className="min-h-full relative ">
       <div className="hidden lg:absolute overflow-hidden lg:block lg:pr-4 h-80 lg:w-1/2 lg:h-full">
         <Image
           src="/checkout-thank-you.jpg"
           fill
           alt="thank you for your order"
-          className="object-cover  object-center h-full w-full "
+          className="object-cover  object-center h-full w-full"
         />
       </div>
       <div className="mx-auto max-w-2xl px-4  sm:px-6 sm:grid sm:grid-cols-2 lg:max-w-7xl lg:gap-x-8 lg:px-8 xl:gap-x-24">

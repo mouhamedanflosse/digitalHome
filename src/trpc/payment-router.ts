@@ -50,7 +50,7 @@ export const paymentRouter = router({
 
       filteredProduct.forEach((prd) => {
         line_items.push({
-          price: prd.priceID!,
+          price: prd.stripeID!,
           quantity: 1,
         });
       });
@@ -74,7 +74,6 @@ export const paymentRouter = router({
       }
     }),
     getOrderStatus : privateProcedure.input(z.object({orderID : z.string()})).query(async ({input}) => {
-      console.log("success")
       const {orderID} = input
       const payload = await getPayloadClient()
 

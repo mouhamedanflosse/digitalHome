@@ -69,6 +69,7 @@ export const product_files: CollectionConfig = {
       "font/*",
       "application/*",
       "application/vnd.rar",
+      "application/zip-compressed",
       "application/zip",
     ],
   },
