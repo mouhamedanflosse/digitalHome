@@ -24,7 +24,7 @@ export default function ProductsPage({ searchParams }: ProductsPageProps) {
   return (
     <MaxWidthWrapper>
       <Product
-        title={label || "browse high-quality assets"}
+        title={label || "Brand New"}
         query={{
           category,
           limit: 40,

@@ -22,7 +22,7 @@ export default function VerifyEmailPage({searchParams} : PageProps) {
             </div> : 
             <div className='flex flex-col justify-center items-center space-y-1'>
                 <div className="w-60 relative h-60 mb-2 ">
-                    <Image src="/hippo-email-sent.png" fill alt="email sent image" />
+                    <Image src="/panda-verify.png" fill alt="email sent image" />
                 </div>
                 <h2 className="text-lg font-semibold text-gray-200">check your email</h2>
                 {

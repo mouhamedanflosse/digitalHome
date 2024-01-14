@@ -23,6 +23,7 @@ export default function NavItem({
   const router = useRouter()
 
   const goToCategory = (herf : string) => {
+    handelOpen()
     router.push(herf)
   }
   return (

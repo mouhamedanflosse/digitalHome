@@ -49,7 +49,7 @@ export default async function ThankUpage({ searchParams }: ThankUpageProps) {
   );
   const fee = 1;
   return (
-    <div className="min-h-full relative ">
+    <div className="min-h-full mx-auto w-fit relative ">
       <div className="hidden lg:absolute overflow-hidden lg:block lg:pr-4 h-80 lg:w-1/2 lg:h-full">
         <Image
           src="/checkout-thank-you.jpg"
@@ -69,11 +69,11 @@ export default async function ThankUpage({ searchParams }: ThankUpageProps) {
                 Your order was processed and your assets are available to
                 download below. We&apos;ve sent your receipt and order details
                 to
-                <p className="font-semibold">
+                {order.user ? <span className="font-semibold">
                   {typeof order.user !== "string"
                     ? order.user.email
                     : "your email"}
-                </p>
+                </span> : null}
               </p>
             ) : (
               <p className="text-sm text-gray-300">

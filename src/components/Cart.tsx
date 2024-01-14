@@ -18,14 +18,14 @@ import { useEffect, useState } from "react";
 import { ScrollArea } from "./ui/scroll-area";
 
 export default function Cart() {
-  const [isMounted,setIsMounted] = useState<Boolean>(false)
+  const [isMounted, setIsMounted] = useState<Boolean>(false);
 
   useEffect(() => {
-    setIsMounted(true)
-  },[])
+    setIsMounted(true);
+  }, []);
 
   const { items } = useCart();
-  
+
   const TotalPrice = items.reduce(
     (total, { product }) => total + product.price,
     0
@@ -52,12 +52,10 @@ export default function Cart() {
           {itemCount > 0 ? (
             <div>
               <div className="flex flex-col pr-6">
-              <ScrollArea className="h-56 p-2.5">
-                {
-                    items.map(({product},i) => (
-                        <CartItem key={i} product={product}/> 
-                    ))
-                }
+                <ScrollArea className="h-56 p-2.5">
+                  {items.map(({ product }, i) => (
+                    <CartItem key={i} product={product} />
+                  ))}
                 </ScrollArea>
               </div>
               <div className="space-y-4 pr-6 ">
@@ -97,17 +95,19 @@ export default function Cart() {
           ) : (
             <div className="flex flex-col h-full justify-center items-center ">
               <div aria-hidden="true" className="w-60 h-60 relative mb-2 ">
-                <Image src="/hippo-empty-cart.png" fill alt="empty Cart " />
+                <Image src="/panda-empty-cart.png" fill alt="empty Cart " />
               </div>
               <p className="font font-semibold text-white">
                 your cart is empty
               </p>
-              <Link
-                href="/product"
-                className="text-blue-600 mt-2 font-semibold transition-all text-sm hover:text-blue-400"
-              >
-                add items to cart checkout
-              </Link>
+              <SheetTrigger asChild>
+                <Link
+                  href="/products"
+                  className="text-blue-600 mt-2 font-semibold transition-all text-sm hover:text-blue-400"
+                >
+                  add items to cart checkout
+                </Link>
+              </SheetTrigger>
             </div>
           )}
         </SheetContent>

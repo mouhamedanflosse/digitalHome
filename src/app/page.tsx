@@ -1,6 +1,8 @@
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import { Button } from "@/components/ui/button";
 import Product from "@/components/Product";
+import { OurQualityPromise } from "@/components/OurQualityPromise";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -25,13 +27,11 @@ export default function Home() {
           team to ensure our highest quality standards
         </p>
         <div className="flex mx-auto  gap-4 mt-6 flex-col sm:flex-row">
-          <Button className="py-0">Browse Trending</Button>
-          <Button className="border-2  border-blue-950" variant="outline">
-            Our quality promise &rarr;
-          </Button>
+          <Button className="py-0" ><Link href="/products">Browse Trending</Link></Button>
+          <OurQualityPromise />
         </div>
       </div>
-      <Product query={{limit : 4,sort : "desc"}} title="Brand new" herf="/" />
+      <Product query={{limit : 4,sort : "desc"}} title="Brand new" herf="/products" />
     </MaxWidthWrapper>
   );
 }
