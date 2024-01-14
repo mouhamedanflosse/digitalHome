@@ -1,6 +1,6 @@
 "use client";
 
-import { PRODUCT_CATEGORIES } from "@/config";
+import {  PRODUCT_CATFORNAV } from "@/config";
 import { useRef, useState,useEffect } from "react";
 import NavItem from "./NavItem";
 import { useOnClickOutside } from "@/hooks/use-on-click-outside";
@@ -22,7 +22,7 @@ export default function NavItems() {
 
   return (
     <div className="flex gap-4 h-full" ref={navRef}>
-      {PRODUCT_CATEGORIES.map((category, i) => {
+      {PRODUCT_CATFORNAV.map((category, i) => {
         const handelOpen = () => {
           if (activeIndex === i) {
             setActiveIndex(null);

@@ -32,6 +32,8 @@ export default function Home() {
         </div>
       </div>
       <Product query={{limit : 4,sort : "desc"}} title="Brand new" herf="/products" />
+      <Product query={{limit : 4,sort : "desc", category: "ui_kits"}} title="Font & Icons" herf="/products?category=ui_kits" />
+      <Product query={{limit : 4,sort : "desc", category: "icons"}} title="Font & Icons" herf="/products?category=icons" />
     </MaxWidthWrapper>
   );
 }

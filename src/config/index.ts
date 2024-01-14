@@ -9,7 +9,7 @@ export const PRODUCT_CATEGORIES = [
         imageSrc: "/nav/ui-kits/mixed.jpg",
       },
       {
-        name: "New Arrivals",
+        name: "Presentation Templates",
         href: "/products?category=ui_kits&sort=desc",
         imageSrc: "/nav/ui-kits/blue.jpg",
       },
@@ -36,6 +36,51 @@ export const PRODUCT_CATEGORIES = [
       },
       {
         name: "Bestselling Icons",
+        href: "/products?category=icons",
+        imageSrc: "/nav/icons/bestsellers.jpg",
+      },
+    ],
+  },
+];
+
+export const PRODUCT_CATFORNAV = [
+  {
+    label: "UI Kits",
+    value: "ui_kits" as const,
+    featured: [
+      {
+        name: "landing pages",
+        href: `/products?category=ui_kits`,
+        imageSrc: "/nav/ui-kits/landing-page.png",
+      },
+      {
+        name: "UX/UI",
+        href: "/products?category=ui_kits&sort=desc",
+        imageSrc: "/nav/ui-kits/blue.jpg",
+      },
+      {
+        name: "Bestsellers",
+        href: "/products?category=ui_kits",
+        imageSrc: "/nav/ui-kits/purple.jpg",
+      },
+    ],
+  },
+  {
+    label: "Font & Icons",
+    value: "icons" as const,
+    featured: [
+      {
+        name: "fonts",
+        href: `/products?category=icons`,
+        imageSrc: "/nav/icons/fonts.jpg",
+      },
+      {
+        name: "fonts",
+        href: "/products?category=icons&sort=desc",
+        imageSrc: "/nav/icons/new.jpg",
+      },
+      {
+        name: "Icons",
         href: "/products?category=icons",
         imageSrc: "/nav/icons/bestsellers.jpg",
       },
