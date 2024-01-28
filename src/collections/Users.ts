@@ -3,7 +3,7 @@ import { VerificationEmailHtml } from "../components/email/EmailVerification";
 
 const userOrAdmin : Access = ({req})  => {
     const user = req.user
-    if (user.role === "admin") return true 
+    if (user.role === "admin") return true
     return {
         id : {
             equals : user.id
@@ -13,17 +13,7 @@ const userOrAdmin : Access = ({req})  => {
 
 export const Users : CollectionConfig = {
     slug : "users",
-    auth : {
-        verify : {
-            generateEmailHTML : ((token) => {
-                return VerificationEmailHtml({
-                    actionLabel : "account verification ",
-                    buttonText : "verify account",
-                    href : `${process.env.NEXT_PUBLIC_SERVER_URL}/verify-email?token=${token}`
-                })
-            })
-        }
-    },
+    auth : true ,
     access : {
         read : userOrAdmin,
         create : () => true,

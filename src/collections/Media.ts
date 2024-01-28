@@ -20,6 +20,7 @@ export const media: CollectionConfig = {
   hooks: {
     beforeChange: [
       ({ req, data }) => {
+        console.log(data)
         return { ...data, user: req.user.id };
       },
     ],
@@ -41,6 +42,7 @@ export const media: CollectionConfig = {
   upload: {
     staticURL: "/media",
     staticDir: "media",
+    
     imageSizes: [
       {
         name: "thumbnail",

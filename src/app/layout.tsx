@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { Toaster } from "sonner"
 import Providers from "@/components/Providers";
 import Footer from "@/components/Footer";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 export const metadata: Metadata = {
   title: "Home",
@@ -21,7 +22,9 @@ export default function RootLayout({
         <main className="flex flex-col min-h-screen relative">
           <Providers >
           <Navbar/>
+          <GoogleOAuthProvider clientId={process.env.STRIPE_WEBHOOK_SECRET!}>
           <div className="flex-grow flex-1">{children}</div>
+          </GoogleOAuthProvider>
           <Footer />
           </Providers>
           <Toaster position="top-center" richColors />

@@ -43,14 +43,16 @@ export default function SignUp() {
     },
     onSuccess : ({sentToEmail}) => {
       reset({ email: "",password: "",confirm: "" })
-      toast.success('verfication email sent to ' + sentToEmail)
-      router.push(`verify-email?to=${sentToEmail}`)
-    }
+      toast.success("please sgin")
+        router.push(`/sign-in`)
+      // toast.success('verfication email sent to ' + sentToEmail)
+      // router.push(`verify-email?to=${sentToEmail}`)
+    },
   });
-  const submitForm = async ({ email, password,confirm }: TauthValidtion) => {
+
+  const submitForm = async ({ email, password, confirm }: TauthValidtion) => {
     mutate({ email, password, confirm });
   };
-
   return (
     <div className="flex flex-col pt-16 justify-center items-center lg:px-0 relative container">
       <div className="flex items-center w-full sm:w-[350px] flex-col mx-auto space-y-3">

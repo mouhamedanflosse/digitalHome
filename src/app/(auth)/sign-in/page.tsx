@@ -11,8 +11,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import {  TauthValidtion2, authValidtion2 } from "@/lib/validators/auth-schema";
 import { trpc } from "@/trpc/client";
 import { toast } from "sonner";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
+import GoogleButton from "@/components/GoogleButton";
 
 export default function SignIn() {
   const [showPwd,setShowPwd] = useState<boolean>(false) 
@@ -147,6 +148,7 @@ export default function SignIn() {
                 <Button type="button" variant="secondary" onClick={continueAsSeller}>continue as seller</Button>
               }
             </div>
+            {/* <GoogleButton /> */}
           </form>
         </div>
       </div>

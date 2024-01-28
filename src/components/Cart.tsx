@@ -19,7 +19,7 @@ import { ScrollArea } from "./ui/scroll-area";
 
 export default function Cart() {
   const [isMounted, setIsMounted] = useState<Boolean>(false);
-
+  
   useEffect(() => {
     setIsMounted(true);
   }, []);

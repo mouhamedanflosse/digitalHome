@@ -15,7 +15,7 @@ export default function PaymentStatus({
   orderEmail,
 }: paymentProps) {
   const router = useRouter()
-  const { data } =  trpc.payment.getOrderStatus.useQuery(
+  const { data } = trpc.payment.getOrderStatus.useQuery(
     { orderID },
     {
       enabled: isPaid === false,
