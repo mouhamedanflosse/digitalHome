@@ -8,7 +8,7 @@ const nextConfig = {
 			},
 			{
 				protocol: "https",
-				hostname: "digitalhome.up.railway.app",
+				hostname: "digitalhome-now.payloadcms.app",
 			},
 		],
 	},
