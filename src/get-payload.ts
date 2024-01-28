@@ -31,8 +31,8 @@ interface Args {
 }
 
 export const getPayloadClient = async ({ initOptions }: Args = {}) : Promise<Payload> => {
-  if (!process.env.PAYLOAD_SECRET) {
-    throw Error("the PAYLOAD_SECRET is missing");
+  if (!process.env.PAYLOAD_SECRET_KEY) {
+    throw Error("the PAYLOAD_SECRET_KEY is missing");
   }
   if (cached.client) {
     return cached.client;
@@ -44,7 +44,7 @@ export const getPayloadClient = async ({ initOptions }: Args = {}) : Promise<Pay
         fromAddress : "onboarding@resend.dev",
         fromName :"digitalHome"
       },
-      secret: process.env.PAYLOAD_SECRET,
+      secret: process.env.PAYLOAD_SECRET_KEY,
       local: initOptions?.express ? false : true,
       ...(initOptions || {}),
     });
