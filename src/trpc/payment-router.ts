@@ -41,7 +41,7 @@ export const paymentRouter = router({
       const line_items: Stripe.Checkout.SessionCreateParams.LineItem[] = [];
 
       line_items.push({
-        price: "price_1OTo2iBGnbiiIAAeCr2adBI9",
+        price: "price_1OTS8ZGjvs2pAq0dAuF6jrc3",
         quantity: 1,
         adjustable_quantity: {
           enabled: false,
