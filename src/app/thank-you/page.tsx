@@ -5,7 +5,8 @@ import { getPayloadClient } from "@/get-payload";
 import { notFound, redirect } from "next/navigation";
 import { PRODUCT_CATEGORIES } from "@/config";
 import { Product, ProductFile, User } from "@/payload-types";
-import { formatPrice } from "@/lib/utils";
+import { cn, formatPrice } from "@/lib/utils";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import PaymentStatus from "@/components/paymentStatus";
 import Link from "next/link";
 
@@ -86,7 +87,10 @@ export default async function ThankUpage({ searchParams }: ThankUpageProps) {
               <p className="text-gray-100 text-lg">order Nr :</p>
               <div className="font-bold text-sm">{order.id}</div>
             </div>
-            <ul className="divide-y-2 divide-gray-400 mt-6">
+            <ScrollArea
+          className={cn("lg:col-span-7 p-1 max-h-[350px] h-48 bg-[#06010d] ")}
+        >
+            <ul className="divide-y divide-opacity-75 divide-gray-400 mt-6">
               {(order.products as Product[]).map((prd, i) => {
                 const label = PRODUCT_CATEGORIES.find(
                   ({ value }) => value === prd.category
@@ -102,7 +106,7 @@ export default async function ThankUpage({ searchParams }: ThankUpageProps) {
                   .filter(Boolean) as string[];
 
                 return (
-                  <li key={i}>
+                  <li key={i} className="py-3">
                     <div className="flex space-x-3">
                       <div className="relative w-24 h-24">
                         <Image
@@ -135,6 +139,7 @@ export default async function ThankUpage({ searchParams }: ThankUpageProps) {
                 );
               })}
             </ul>
+            </ScrollArea>
             <ul className="flex mt-4 gap-y-4 flex-col ">
               <li className="flex items-center justify-between ">
                 <p className="text-sm text-gray-300">subtotal</p>

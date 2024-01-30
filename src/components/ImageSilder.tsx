@@ -35,7 +35,7 @@ export default function ImageSilder({ urls }: props) {
 
   return (
     <div className="relative group aspect-square rounded-xl overflow-hidden">
-      <div className="absolute w-full opacity-0 z-10 px-2 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 group-hover:opacity-100 transition">
+      <div className="absolute w-full opacity-100 md:opacity-0 z-10 px-2 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 group-hover:opacity-100 transition">
         <button
           onClick={(e) => {
             e.preventDefault()

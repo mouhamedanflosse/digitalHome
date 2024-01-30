@@ -32,8 +32,8 @@ export default function ProductListing({ product, index }: props) {
   }
 
   const url = product.images.map(({image}) =>
-    typeof image === "string" ? image : image.url
-  ).filter(Boolean) as string[]
+  typeof image === "string" ? image : image?.url
+).filter(Boolean).filter((url) => url?.startsWith("http")) as string[]
 
   if (product && isVisibale) {
     return (

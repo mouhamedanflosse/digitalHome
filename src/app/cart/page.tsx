@@ -44,16 +44,16 @@ export default function Pags() {
       <div className="mt-12 lg:grid items-start mx-auto lg:grid-cols-12 lg:gap-12 xl:gap-16">
         <ScrollArea
           className={cn("lg:col-span-7 p-1 max-h-[350px] h-48 bg-[#06010d] mb-4", {
-            "border-dashed border-2 bg-[#06010d] p-2 rounded-lg ":
+            "border-dashed border-2 h-fit bg-[#06010d] p-2 rounded-lg ":
               isMounted && items.length === 0,
           })}
         >
           <h2 className="sr-only">Items in your shopping cart</h2>
           {isMounted && items.length === 0 ? (
-            <div className="flex flex-col item-center justify-center w-full h-[350px] space-y-1">
+            <div className="flex flex-col item-center justify-center w-full  space-y-1">
               <div className="relative mx-auto w-40 h-40">
                 <Image
-                  src="/hippo-empty-cart.png"
+                  src="/panda-empty-cart.png"
                   alt="empty Cart image"
                   fill
                   loading="eager"
